@@ -19,6 +19,9 @@
 html {
     scroll-behavior: smooth;
     width: 100%;
+
+        max-width: 100%;
+
     overflow-x: hidden; 
 }
 
@@ -29,16 +32,15 @@ body {
     transition: background-color var(--transition), color var(--transition);
     line-height: 1.7;
     width: 100%;
+    max-width: 100%;        /* ← ضيف */
     min-height: 100vh;
-    overflow: hidden auto;
-    /* لا نضع padding هنا – الحاويات تتحكم بالمسافات */
+    overflow-x: hidden;     /* ← بدل overflow: hidden auto */
+    overflow-y: auto;       /* ← ضيف */
     padding: 0;
     margin: 0;
     cursor: none;
-    min-width: 100vw;
-  
+    /* شيل min-width: 100vw كلياً */
 }
-
 /* ================================================================
    CUSTOM CURSOR (للكمبيوتر فقط)
    ================================================================ */
@@ -145,6 +147,8 @@ body {
     opacity: 0.05;
     white-space: pre-wrap;
     padding: 4rem;
+    
+ overflow: hidden; 
 }
 
 /* ================================================================
