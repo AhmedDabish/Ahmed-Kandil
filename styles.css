@@ -19,7 +19,7 @@
 html {
     scroll-behavior: smooth;
     width: 100%;
-
+font-size: large;
         max-width: 100%;
 
     overflow-x: hidden; 
