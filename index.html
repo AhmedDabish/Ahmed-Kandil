@@ -2,8 +2,8 @@
 <html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
-    <!-- IMPORTANT: تم إزالة maximum-scale=1.0 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- الحل: viewport بدون maximum-scale مع user-scalable=yes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <title>د. أحمد قنديل | استشاري تجميل وزراعة الأسنان</title>
 
     <!-- Favicon -->
@@ -24,40 +24,28 @@
 <body>
 
     <!-- ================================================================
-    CUSTOM CURSOR (يظهر فقط على سطح المكتب)
+    CUSTOM CURSOR
     ================================================================ -->
     <div id="custom-cursor"><i class="fas fa-tooth"></i></div>
 
-    <!-- ================================================================
-    SPINNING TOOTH
-    ================================================================ -->
+    <!-- SPINNING TOOTH -->
     <div class="spinning-tooth-left"><i class="fas fa-tooth"></i></div>
 
-    <!-- ================================================================
-    MEDICAL PATTERN & BLOBS
-    ================================================================ -->
+    <!-- MEDICAL PATTERN & BLOBS -->
     <div class="medical-bg-pattern"></div>
     <div class="bg-blobs"><span></span><span></span><span></span></div>
 
-    <!-- ================================================================
-    FLOATING TOOTH ICONS
-    ================================================================ -->
+    <!-- FLOATING TOOTH ICONS -->
     <div class="floating-tooth-wrapper"><i class="fas fa-tooth"></i></div>
     <div class="floating-tooth-wrapper-left"><i class="fas fa-tooth"></i></div>
 
-    <!-- ================================================================
-    PROGRESS BAR
-    ================================================================ -->
+    <!-- PROGRESS BAR -->
     <div id="progress-bar"></div>
 
-    <!-- ================================================================
-    TOAST
-    ================================================================ -->
+    <!-- TOAST -->
     <div id="toast" class="toast">تم الإرسال بنجاح! 🦷</div>
 
-    <!-- ================================================================
-    NAVBAR
-    ================================================================ -->
+    <!-- ======= NAVBAR ======= -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="#" class="logo"><i class="fas fa-tooth"></i> أحمد <span>قنديل</span></a>
@@ -84,9 +72,7 @@
         </div>
     </nav>
 
-    <!-- ================================================================
-    HERO
-    ================================================================ -->
+    <!-- ======= HERO ======= -->
     <section class="hero" id="about">
         <div class="container">
             <div class="hero-grid">
@@ -122,13 +108,10 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    STATS
-    ================================================================ -->
+    <!-- ======= STATS ======= -->
     <section style="padding-top:0;">
         <div class="container">
             <div class="stats-grid">
-                <!-- 4 بطاقات إحصاءات (يتم توليدها بواسطة JavaScript) -->
                 <div class="stat-card reveal reveal-delay-1">
                     <div class="circle-wrap" data-target="8" data-label="سنوات خبرة" data-suffix="+">
                         <svg viewBox="0 0 100 100"><circle class="bg-circle" cx="50" cy="50" r="45"/><circle class="progress-circle" cx="50" cy="50" r="45" id="circle0"/></svg>
@@ -161,9 +144,7 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    SERVICES
-    ================================================================ -->
+    <!-- ======= SERVICES ======= -->
     <section id="services">
         <div class="container">
             <div class="section-header reveal">
@@ -194,9 +175,7 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    PORTFOLIO
-    ================================================================ -->
+    <!-- ======= PORTFOLIO ======= -->
     <section id="portfolio" style="background: var(--bg-card); backdrop-filter: blur(12px); border-radius: var(--radius); margin-bottom: 1.5rem; padding: 4rem 0; border: 1px solid var(--border);">
         <div class="container">
             <div class="section-header reveal">
@@ -245,9 +224,7 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    EXPERIENCE
-    ================================================================ -->
+    <!-- ======= EXPERIENCE ======= -->
     <section id="experience">
         <div class="container">
             <div class="section-header reveal">
@@ -287,9 +264,7 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    TESTIMONIALS
-    ================================================================ -->
+    <!-- ======= TESTIMONIALS ======= -->
     <section style="background: var(--bg-card); backdrop-filter: blur(12px); border-radius: var(--radius); padding: 4rem 0; border: 1px solid var(--border);">
         <div class="container">
             <div class="section-header reveal">
@@ -312,9 +287,7 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    CONTACT
-    ================================================================ -->
+    <!-- ======= CONTACT ======= -->
     <section id="contact">
         <div class="container">
             <div class="section-header reveal">
@@ -353,9 +326,7 @@
         </div>
     </section>
 
-    <!-- ================================================================
-    FOOTER
-    ================================================================ -->
+    <!-- ======= FOOTER ======= -->
     <footer>
         <div class="container">
             <div class="social-links">
@@ -368,9 +339,7 @@
         </div>
     </footer>
 
-    <!-- ================================================================
-    MODAL (Popup)
-    ================================================================ -->
+    <!-- ======= MODAL ======= -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content" id="modalContent">
             <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
@@ -380,9 +349,7 @@
         </div>
     </div>
 
-    <!-- ================================================================
-    LIGHTBOX
-    ================================================================ -->
+    <!-- ======= LIGHTBOX ======= -->
     <div class="lightbox-overlay" id="lightboxOverlay">
         <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
         <div class="lightbox-container">

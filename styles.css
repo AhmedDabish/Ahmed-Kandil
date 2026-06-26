@@ -1,5 +1,5 @@
 /* ================================================================
-   RESET & BASE
+   RESET & BASE – تم إزالة أي padding قد يسبب تصغير الصفحة
    ================================================================ */
 *,
 *::before,
@@ -18,6 +18,7 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
 }
 
 body {
@@ -26,9 +27,12 @@ body {
     color: var(--text);
     transition: background-color var(--transition), color var(--transition);
     line-height: 1.7;
+    width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
-    /* إزالة أي padding ثابت */
+    /* لا نضع padding هنا – الحاويات تتحكم بالمسافات */
     padding: 0;
+    margin: 0;
     cursor: none;
 }
 
@@ -85,7 +89,7 @@ body {
 }
 
 /* ================================================================
-   SPINNING TOOTH (يسار)
+   SPINNING TOOTH
    ================================================================ */
 .spinning-tooth-left {
     position: fixed;
@@ -259,7 +263,7 @@ body {
 }
 
 /* ================================================================
-   CONTAINER – نستخدم عرض 100% مع padding جانبي
+   CONTAINER – عرض 100% مع padding جانبي معقول
    ================================================================ */
 .container {
     width: 100%;
@@ -269,7 +273,7 @@ body {
 }
 
 /* ================================================================
-   THEMES (داكن/فاتح)
+   THEMES
    ================================================================ */
 :root {
     --bg: #0a0f1e;
@@ -442,6 +446,7 @@ section {
     padding: 5rem 0;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 .section-header {
     text-align: center;
@@ -500,6 +505,7 @@ section {
     background: var(--hero-bg);
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 .hero-grid {
     display: grid;
@@ -1732,8 +1738,9 @@ footer .footer-tooth {
 }
 
 /* ================================================================
-   RESPONSIVE – ضبط الحجم الطبيعي للشاشات
+   RESPONSIVE – الحل النهائي لمشكلة التصغير
    ================================================================ */
+/* في أي شاشة أقل من 992px نرجع التنسيق لعمود واحد مع توسيع الصور */
 @media (max-width: 992px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -1744,6 +1751,7 @@ footer .footer-tooth {
     }
     .hero-content p {
         margin: 1.2rem auto 2rem;
+        max-width: 100%;
     }
     .hero-buttons {
         justify-content: center;
@@ -1845,6 +1853,7 @@ footer .footer-tooth {
     }
 }
 
+/* 768px فأقل – تحويل كل شيء لعمود واحد مع توسيع كامل */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -1862,6 +1871,7 @@ footer .footer-tooth {
         border-bottom: 1px solid var(--border);
         gap: 1.2rem;
         box-shadow: var(--shadow);
+        width: 100%;
     }
     .nav-links.open {
         display: flex;
@@ -1879,7 +1889,11 @@ footer .footer-tooth {
         padding: 1.2rem;
     }
     section {
-        padding: 3.5rem 0;
+        padding: 3rem 0;
+    }
+    /* إزالة أي padding جانبي زائد في الموبايل */
+    .container {
+        padding: 0 1rem;
     }
     .hero-badge-float {
         font-size: 0.6rem;
@@ -1959,6 +1973,7 @@ footer .footer-tooth {
     }
 }
 
+/* 480px فأقل – أصغر الشاشات */
 @media (max-width: 480px) {
     .stats-grid {
         grid-template-columns: 1fr 1fr;
@@ -1972,8 +1987,8 @@ footer .footer-tooth {
         font-size: 1.2rem;
     }
     .hero-avatar-wrapper {
-        width: 190px;
-        height: 190px;
+        width: 180px;
+        height: 180px;
     }
     .modal-gallery {
         grid-template-columns: 1fr 1fr;
