@@ -2,10 +2,11 @@
 <html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <!-- IMPORTANT: تم إزالة maximum-scale=1.0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>د. أحمد قنديل | استشاري تجميل وزراعة الأسنان</title>
 
-    <!-- Favicon (صورة شخصية) -->
+    <!-- Favicon -->
     <link rel="icon" href="profile.jpg" type="image/jpeg" />
     <link rel="apple-touch-icon" href="profile.jpg" />
 
@@ -14,51 +15,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <!-- Font Awesome 6 -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- رابط ملف CSS الخارجي -->
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
     <!-- ================================================================
-    CUSTOM CURSOR
+    CUSTOM CURSOR (يظهر فقط على سطح المكتب)
     ================================================================ -->
-    <div id="custom-cursor">
-        <i class="fas fa-tooth"></i>
-    </div>
+    <div id="custom-cursor"><i class="fas fa-tooth"></i></div>
 
     <!-- ================================================================
     SPINNING TOOTH
     ================================================================ -->
-    <div class="spinning-tooth-left">
-        <i class="fas fa-tooth"></i>
-    </div>
+    <div class="spinning-tooth-left"><i class="fas fa-tooth"></i></div>
 
     <!-- ================================================================
-    MEDICAL PATTERN
+    MEDICAL PATTERN & BLOBS
     ================================================================ -->
     <div class="medical-bg-pattern"></div>
+    <div class="bg-blobs"><span></span><span></span><span></span></div>
 
     <!-- ================================================================
     FLOATING TOOTH ICONS
     ================================================================ -->
-    <div class="floating-tooth-wrapper">
-        <i class="fas fa-tooth"></i>
-    </div>
-    <div class="floating-tooth-wrapper-left">
-        <i class="fas fa-tooth"></i>
-    </div>
-
-    <!-- ================================================================
-    BACKGROUND BLOBS
-    ================================================================ -->
-    <div class="bg-blobs">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+    <div class="floating-tooth-wrapper"><i class="fas fa-tooth"></i></div>
+    <div class="floating-tooth-wrapper-left"><i class="fas fa-tooth"></i></div>
 
     <!-- ================================================================
     PROGRESS BAR
@@ -75,10 +60,7 @@
     ================================================================ -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-tooth"></i> أحمد <span>قنديل</span>
-            </a>
-
+            <a href="#" class="logo"><i class="fas fa-tooth"></i> أحمد <span>قنديل</span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about" data-i18n="nav_about"><i class="fas fa-circle" style="font-size:0.4rem;"></i> نبذة</a></li>
                 <li><a href="#services" data-i18n="nav_services"><i class="fas fa-circle" style="font-size:0.4rem;"></i> الخدمات</a></li>
@@ -87,8 +69,7 @@
                 <li><a href="#contact" data-i18n="nav_contact"><i class="fas fa-circle" style="font-size:0.4rem;"></i> اتصل</a></li>
                 <li>
                     <button class="lang-toggle" id="langToggle" aria-label="Toggle Language">
-                        <i class="fas fa-globe"></i>
-                        <span id="langText">عربي</span>
+                        <i class="fas fa-globe"></i><span id="langText">عربي</span>
                     </button>
                 </li>
                 <li>
@@ -97,7 +78,6 @@
                     </button>
                 </li>
             </ul>
-
             <button class="hamburger" id="hamburger" aria-label="القائمة">
                 <span></span><span></span><span></span>
             </button>
@@ -111,32 +91,20 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <div class="badge reveal">
-                        <i class="fas fa-circle"></i> <span data-i18n="badge_available">متاح للاستشارات</span>
-                    </div>
-                    <h1 class="reveal reveal-delay-1">
-                        <span data-i18n="hero_name_prefix">د.</span> <span class="highlight" data-i18n="hero_name">أحمد قنديل</span>
-                    </h1>
+                    <div class="badge reveal"><i class="fas fa-circle"></i> <span data-i18n="badge_available">متاح للاستشارات</span></div>
+                    <h1 class="reveal reveal-delay-1"><span data-i18n="hero_name_prefix">د.</span> <span class="highlight" data-i18n="hero_name">أحمد قنديل</span></h1>
                     <div class="hero-subtitle reveal reveal-delay-1">
                         <span>🦷 <span data-i18n="hero_title">استشاري تجميل وزراعة الأسنان</span></span>
                         <span class="credential" data-i18n="hero_cred1">BDS, MSc</span>
                         <span class="credential" data-i18n="hero_cred2">عضو الجمعية المصرية</span>
                     </div>
                     <div class="typing-wrapper reveal reveal-delay-2">
-                        <span id="typedText"></span>
-                        <span class="cursor-blink"></span>
+                        <span id="typedText"></span><span class="cursor-blink"></span>
                     </div>
-                    <p class="reveal reveal-delay-3" data-i18n="hero_desc">
-                        أحول الابتسامات إلى أعمال فنية باستخدام أحدث تقنيات الطب التجميلي
-                        مع رعاية شاملة وراحة لا تضاهى.
-                    </p>
+                    <p class="reveal reveal-delay-3" data-i18n="hero_desc">أحول الابتسامات إلى أعمال فنية باستخدام أحدث تقنيات الطب التجميلي مع رعاية شاملة وراحة لا تضاهى.</p>
                     <div class="hero-buttons reveal reveal-delay-4">
-                        <a href="#portfolio" class="btn btn-primary" data-i18n="hero_btn1">
-                            <i class="fas fa-arrow-left"></i> استعرض أعمالي
-                        </a>
-                        <a href="#contact" class="btn btn-outline" data-i18n="hero_btn2">
-                            <i class="fas fa-calendar-check"></i> احجز موعداً
-                        </a>
+                        <a href="#portfolio" class="btn btn-primary" data-i18n="hero_btn1"><i class="fas fa-arrow-left"></i> استعرض أعمالي</a>
+                        <a href="#contact" class="btn btn-outline" data-i18n="hero_btn2"><i class="fas fa-calendar-check"></i> احجز موعداً</a>
                     </div>
                     <div class="medical-tips reveal reveal-delay-5">
                         <div class="medical-tip"><i class="fas fa-tooth"></i> <span data-i18n="tip1">فحص دوري كل 6 أشهر</span></div>
@@ -146,12 +114,8 @@
                 </div>
                 <div class="hero-image reveal reveal-delay-4">
                     <div class="hero-avatar-wrapper">
-                        <div class="hero-avatar">
-                            <img src="profile.jpg" alt="د. أحمد قنديل" />
-                        </div>
-                        <div class="hero-badge-float">
-                            <i class="fas fa-check-circle"></i> <span data-i18n="badge_exp">8+ سنوات خبرة</span>
-                        </div>
+                        <div class="hero-avatar"><img src="profile.jpg" alt="د. أحمد قنديل" /></div>
+                        <div class="hero-badge-float"><i class="fas fa-check-circle"></i> <span data-i18n="badge_exp">8+ سنوات خبرة</span></div>
                     </div>
                 </div>
             </div>
@@ -164,56 +128,33 @@
     <section style="padding-top:0;">
         <div class="container">
             <div class="stats-grid">
+                <!-- 4 بطاقات إحصاءات (يتم توليدها بواسطة JavaScript) -->
                 <div class="stat-card reveal reveal-delay-1">
                     <div class="circle-wrap" data-target="8" data-label="سنوات خبرة" data-suffix="+">
-                        <svg viewBox="0 0 100 100">
-                            <circle class="bg-circle" cx="50" cy="50" r="45" />
-                            <circle class="progress-circle" cx="50" cy="50" r="45" id="circle0" />
-                        </svg>
+                        <svg viewBox="0 0 100 100"><circle class="bg-circle" cx="50" cy="50" r="45"/><circle class="progress-circle" cx="50" cy="50" r="45" id="circle0"/></svg>
                         <div class="spin-ring"></div>
-                        <div class="circle-number">
-                            <span id="num0">0</span><span class="suffix">+</span>
-                            <span class="stat-label" data-i18n="stat1_label">سنوات خبرة</span>
-                        </div>
+                        <div class="circle-number"><span id="num0">0</span><span class="suffix">+</span><span class="stat-label" data-i18n="stat1_label">سنوات خبرة</span></div>
                     </div>
                 </div>
                 <div class="stat-card reveal reveal-delay-2">
                     <div class="circle-wrap" data-target="1500" data-label="حالة ناجحة" data-suffix="">
-                        <svg viewBox="0 0 100 100">
-                            <circle class="bg-circle" cx="50" cy="50" r="45" />
-                            <circle class="progress-circle" cx="50" cy="50" r="45" id="circle1" style="stroke: var(--secondary);" />
-                        </svg>
+                        <svg viewBox="0 0 100 100"><circle class="bg-circle" cx="50" cy="50" r="45"/><circle class="progress-circle" cx="50" cy="50" r="45" id="circle1" style="stroke: var(--secondary);"/></svg>
                         <div class="spin-ring" style="border-top-color: var(--secondary); border-right-color: var(--accent);"></div>
-                        <div class="circle-number">
-                            <span id="num1">0</span>
-                            <span class="stat-label" data-i18n="stat2_label">حالة ناجحة</span>
-                        </div>
+                        <div class="circle-number"><span id="num1">0</span><span class="stat-label" data-i18n="stat2_label">حالة ناجحة</span></div>
                     </div>
                 </div>
                 <div class="stat-card reveal reveal-delay-3">
                     <div class="circle-wrap" data-target="500" data-label="مريض راضٍ" data-suffix="+">
-                        <svg viewBox="0 0 100 100">
-                            <circle class="bg-circle" cx="50" cy="50" r="45" />
-                            <circle class="progress-circle" cx="50" cy="50" r="45" id="circle2" style="stroke: #22c55e;" />
-                        </svg>
+                        <svg viewBox="0 0 100 100"><circle class="bg-circle" cx="50" cy="50" r="45"/><circle class="progress-circle" cx="50" cy="50" r="45" id="circle2" style="stroke: #22c55e;"/></svg>
                         <div class="spin-ring" style="border-top-color: #22c55e; border-right-color: #60a5fa;"></div>
-                        <div class="circle-number">
-                            <span id="num2">0</span><span class="suffix">+</span>
-                            <span class="stat-label" data-i18n="stat3_label">مريض راضٍ</span>
-                        </div>
+                        <div class="circle-number"><span id="num2">0</span><span class="suffix">+</span><span class="stat-label" data-i18n="stat3_label">مريض راضٍ</span></div>
                     </div>
                 </div>
                 <div class="stat-card reveal reveal-delay-4">
                     <div class="circle-wrap" data-target="98" data-label="رضا المرضى" data-suffix="%">
-                        <svg viewBox="0 0 100 100">
-                            <circle class="bg-circle" cx="50" cy="50" r="45" />
-                            <circle class="progress-circle" cx="50" cy="50" r="45" id="circle3" style="stroke: #f59e0b;" />
-                        </svg>
+                        <svg viewBox="0 0 100 100"><circle class="bg-circle" cx="50" cy="50" r="45"/><circle class="progress-circle" cx="50" cy="50" r="45" id="circle3" style="stroke: #f59e0b;"/></svg>
                         <div class="spin-ring" style="border-top-color: #f59e0b; border-right-color: #a78bfa;"></div>
-                        <div class="circle-number">
-                            <span id="num3">0</span><span class="suffix">%</span>
-                            <span class="stat-label" data-i18n="stat4_label">رضا المرضى</span>
-                        </div>
+                        <div class="circle-number"><span id="num3">0</span><span class="suffix">%</span><span class="stat-label" data-i18n="stat4_label">رضا المرضى</span></div>
                     </div>
                 </div>
             </div>
@@ -254,7 +195,7 @@
     </section>
 
     <!-- ================================================================
-    PORTFOLIO (أعمالي)
+    PORTFOLIO
     ================================================================ -->
     <section id="portfolio" style="background: var(--bg-card); backdrop-filter: blur(12px); border-radius: var(--radius); margin-bottom: 1.5rem; padding: 4rem 0; border: 1px solid var(--border);">
         <div class="container">
@@ -264,52 +205,36 @@
                 <p class="section-subtitle" data-i18n="portfolio_subtitle">نماذج من حالاتي الناجحة</p>
             </div>
             <div class="portfolio-grid">
-                <!-- البطاقات -->
                 <div class="portfolio-item" data-case="0">
                     <div class="click-hint"><i class="fas fa-mouse-pointer"></i> <span data-i18n="click_preview">معاينة</span></div>
-                    <div class="portfolio-thumb">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop&crop=center" alt="زراعة الأسنان" />
-                        <div class="overlay-icon"><i class="fas fa-expand"></i></div>
-                    </div>
+                    <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop&crop=center" alt="زراعة الأسنان" /><div class="overlay-icon"><i class="fas fa-expand"></i></div></div>
                     <div class="portfolio-info">
                         <h4><i class="fas fa-tooth"></i> <span data-i18n="portfolio_title1">زراعة الفك الكامل</span></h4>
                         <p data-i18n="portfolio_desc1">تقنية All-on-6</p>
                         <span class="portfolio-tag"><i class="fas fa-image"></i> 6 صور</span>
                     </div>
                 </div>
-
                 <div class="portfolio-item" data-case="1">
                     <div class="click-hint"><i class="fas fa-mouse-pointer"></i> <span data-i18n="click_preview">معاينة</span></div>
-                    <div class="portfolio-thumb">
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=300&fit=crop&crop=center" alt="ابتسامة هوليود" />
-                        <div class="overlay-icon"><i class="fas fa-expand"></i></div>
-                    </div>
+                    <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=300&fit=crop&crop=center" alt="ابتسامة هوليود" /><div class="overlay-icon"><i class="fas fa-expand"></i></div></div>
                     <div class="portfolio-info">
                         <h4><i class="fas fa-star"></i> <span data-i18n="portfolio_title2">ابتسامة هوليود</span></h4>
                         <p data-i18n="portfolio_desc2">16 فينير تجميلي</p>
                         <span class="portfolio-tag"><i class="fas fa-image"></i> 5 صور</span>
                     </div>
                 </div>
-
                 <div class="portfolio-item" data-case="2">
                     <div class="click-hint"><i class="fas fa-mouse-pointer"></i> <span data-i18n="click_preview">معاينة</span></div>
-                    <div class="portfolio-thumb">
-                        <img src="https://images.unsplash.com/photo-1598257006626-48c0c252a0d6?w=400&h=300&fit=crop&crop=center" alt="تقويم الأسنان" />
-                        <div class="overlay-icon"><i class="fas fa-expand"></i></div>
-                    </div>
+                    <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1598257006626-48c0c252a0d6?w=400&h=300&fit=crop&crop=center" alt="تقويم الأسنان" /><div class="overlay-icon"><i class="fas fa-expand"></i></div></div>
                     <div class="portfolio-info">
                         <h4><i class="fas fa-ruler-combined"></i> <span data-i18n="portfolio_title3">تقويم شفاف</span></h4>
                         <p data-i18n="portfolio_desc3">إنفزلاين 8 أشهر</p>
                         <span class="portfolio-tag"><i class="fas fa-image"></i> 5 صور</span>
                     </div>
                 </div>
-
                 <div class="portfolio-item" data-case="3">
                     <div class="click-hint"><i class="fas fa-mouse-pointer"></i> <span data-i18n="click_preview">معاينة</span></div>
-                    <div class="portfolio-thumb">
-                        <img src="https://images.unsplash.com/photo-1629909613654-28cc8e4abae7?w=400&h=300&fit=crop&crop=center" alt="زراعة العظم" />
-                        <div class="overlay-icon"><i class="fas fa-expand"></i></div>
-                    </div>
+                    <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1629909613654-28cc8e4abae7?w=400&h=300&fit=crop&crop=center" alt="زراعة العظم" /><div class="overlay-icon"><i class="fas fa-expand"></i></div></div>
                     <div class="portfolio-info">
                         <h4><i class="fas fa-bone"></i> <span data-i18n="portfolio_title4">زراعة العظم</span></h4>
                         <p data-i18n="portfolio_desc4">رفع الجيوب والزراعة</p>
@@ -422,9 +347,7 @@
                     <input type="email" id="email" data-i18n-placeholder="form_email" placeholder="البريد الإلكتروني" required />
                     <input type="tel" id="phone" data-i18n-placeholder="form_phone" placeholder="رقم الهاتف" />
                     <textarea id="message" data-i18n-placeholder="form_message" placeholder="نوع الخدمة أو الاستفسار..." required></textarea>
-                    <button type="submit" class="btn btn-primary" data-i18n="form_submit">
-                        <i class="fas fa-paper-plane"></i> احجز موعدك الآن
-                    </button>
+                    <button type="submit" class="btn btn-primary" data-i18n="form_submit"><i class="fas fa-paper-plane"></i> احجز موعدك الآن</button>
                 </form>
             </div>
         </div>
@@ -441,12 +364,7 @@
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
-            <p>
-                <span class="footer-tooth">🦷</span>
-                <span data-i18n="footer_text">&copy; 2026 <strong style="color:var(--text);">أحمد قنديل</strong> - جميع الحقوق محفوظة.</span>
-                <span class="footer-tooth">🦷</span><br />
-                <span style="font-size:0.75rem;" data-i18n="footer_sub">استشاري تجميل وزراعة الأسنان | BDS, MSc</span>
-            </p>
+            <p><span class="footer-tooth">🦷</span> <span data-i18n="footer_text">&copy; 2026 <strong style="color:var(--text);">أحمد قنديل</strong> - جميع الحقوق محفوظة.</span> <span class="footer-tooth">🦷</span><br /><span style="font-size:0.75rem;" data-i18n="footer_sub">استشاري تجميل وزراعة الأسنان | BDS, MSc</span></p>
         </div>
     </footer>
 
@@ -472,13 +390,10 @@
             <img src="" alt="صورة مكبرة" id="lightboxImage" />
             <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-left"></i></button>
         </div>
-        <div class="lightbox-counter" id="lightboxCounter">
-            <i class="fas fa-tooth"></i>
-            <span id="lightboxCounterText">1 / 6</span>
-        </div>
+        <div class="lightbox-counter" id="lightboxCounter"><i class="fas fa-tooth"></i> <span id="lightboxCounterText">1 / 6</span></div>
     </div>
 
-    <!-- رابط ملف JavaScript الخارجي -->
-    <script src="app.js" defer></script>
+    <!-- JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>

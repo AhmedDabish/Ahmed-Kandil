@@ -204,7 +204,6 @@ if (window.innerWidth > 768) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
-
     const hoverElements = document.querySelectorAll(
         'a, button, .portfolio-item, .gallery-item, .btn, .theme-toggle, .hamburger, .modal-close, .lightbox-nav, .lightbox-close'
         );
@@ -215,7 +214,7 @@ if (window.innerWidth > 768) {
 }
 
 // ================================================================
-// 3. DATA (صور الأسنان)
+// 3. DATA (صور الأعمال)
 // ================================================================
 const casesData = [{
     title: 'زراعة الفك الكامل',
@@ -272,14 +271,12 @@ function getTypedPhrases() {
 }
 
 function startTypingEffect() {
-    if (typingInterval) {
-        clearTimeout(typingInterval);
-    }
+    if (typingInterval) clearTimeout(typingInterval);
     const phrases = getTypedPhrases();
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
+    let phraseIndex = 0,
+        charIndex = 0,
+        isDeleting = false,
+        typingSpeed = 100;
 
     function typeEffect() {
         const currentPhrase = phrases[phraseIndex];
@@ -292,7 +289,6 @@ function startTypingEffect() {
             charIndex++;
             typingSpeed = 120;
         }
-
         if (!isDeleting && charIndex === currentPhrase.length) {
             isDeleting = true;
             typingSpeed = 2000;
@@ -314,7 +310,6 @@ function applyLanguage(lang) {
     localStorage.setItem('lang', lang);
     document.documentElement.lang = lang === 'ar' ? 'ar' : 'en';
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
     document.getElementById('langText').textContent = lang === 'ar' ? 'عربي' : 'ENG';
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -323,7 +318,6 @@ function applyLanguage(lang) {
             el.innerHTML = translations[lang][key];
         }
     });
-
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.dataset.i18nPlaceholder;
         if (translations[lang] && translations[lang][key] !== undefined) {
@@ -331,21 +325,17 @@ function applyLanguage(lang) {
         }
     });
 
-    // تحديث عناوين المودال
-    const modalTitleEl = document.getElementById('modalTitle');
-    const modalSubtitleEl = document.getElementById('modalSubtitle');
-    if (modalTitleEl) {
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    if (modalTitle) {
         const titleKey = lang === 'ar' ? 'معرض' : 'Gallery';
-        modalTitleEl.innerHTML =
-            `<i class="fas fa-tooth"></i> <span class="highlight">${titleKey}</span> الصور`;
+        modalTitle.innerHTML = `<i class="fas fa-tooth"></i> <span class="highlight">${titleKey}</span> الصور`;
     }
-    if (modalSubtitleEl) {
-        modalSubtitleEl.textContent = translations[lang].modal_subtitle || 'اضغط على أي صورة لتكبيرها';
+    if (modalSubtitle) {
+        modalSubtitle.textContent = translations[lang].modal_subtitle || 'اضغط على أي صورة لتكبيرها';
     }
 
-    if (typingInterval) {
-        clearTimeout(typingInterval);
-    }
+    if (typingInterval) clearTimeout(typingInterval);
     startTypingEffect();
 }
 
@@ -353,8 +343,7 @@ function applyLanguage(lang) {
 // 6. TOGGLE LANGUAGE
 // ================================================================
 document.getElementById('langToggle').addEventListener('click', () => {
-    const nextLang = currentLang === 'ar' ? 'en' : 'ar';
-    applyLanguage(nextLang);
+    applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
 });
 
 // ================================================================
@@ -401,95 +390,72 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // ================================================================
 // 10. REVEAL OBSERVER
 // ================================================================
-const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
-revealElements.forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ================================================================
 // 11. CIRCULAR PROGRESS
 // ================================================================
 const circleObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const card = entry.target;
-            const circleWrap = card.querySelector('.circle-wrap');
-            if (!circleWrap) return;
-            const target = parseInt(circleWrap.dataset.target) || 0;
-            const circle = circleWrap.querySelector('.progress-circle');
-            const numSpan = circleWrap.querySelector('.circle-number span');
+        const card = entry.target;
+        const circleWrap = card.querySelector('.circle-wrap');
+        if (!circleWrap) return;
+        const target = parseInt(circleWrap.dataset.target) || 0;
+        const circle = circleWrap.querySelector('.progress-circle');
+        const numSpan = circleWrap.querySelector('.circle-number span');
+        if (!circle || !numSpan) return;
+        const radius = 45;
+        const circumference = 2 * Math.PI * radius;
+        circle.style.strokeDasharray = circumference;
+        let percent = 0;
+        if (target >= 100) percent = Math.min(target / 1500, 0.8);
+        else if (target >= 50) percent = Math.min(target / 100, 0.8);
+        else percent = Math.min(target / 100, 0.95);
+        if (percent < 0.05 && target > 0) percent = 0.15;
 
-            if (!circle || !numSpan) return;
+        let current = 0;
+        const stepTime = 20,
+            totalSteps = 60,
+            increment = target / totalSteps;
+        const counterInterval = setInterval(() => {
+            current += increment;
+            if (current >= target) { current = target;
+                clearInterval(counterInterval); }
+            numSpan.textContent = Math.floor(current);
+        }, stepTime);
 
-            const radius = 45;
-            const circumference = 2 * Math.PI * radius;
-            circle.style.strokeDasharray = circumference;
-
-            let percent = 0;
-            if (target >= 100) {
-                percent = Math.min(target / 1500, 0.8);
-            } else if (target >= 50) {
-                percent = Math.min(target / 100, 0.8);
-            } else {
-                percent = Math.min(target / 100, 0.95);
-            }
-            if (percent < 0.05 && target > 0) percent = 0.15;
-
-            const finalTarget = target;
-            let current = 0;
-            const stepTime = 20;
-            const totalSteps = 60;
-            const increment = finalTarget / totalSteps;
-
-            const counterInterval = setInterval(() => {
-                current += increment;
-                if (current >= finalTarget) {
-                    current = finalTarget;
-                    clearInterval(counterInterval);
-                }
-                numSpan.textContent = Math.floor(current);
-            }, stepTime);
-
-            circle.style.strokeDashoffset = circumference;
-            setTimeout(() => {
-                circle.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.2, 0.9, 0.3, 1)';
-                const offset = circumference - (percent * circumference);
-                circle.style.strokeDashoffset = offset;
-            }, 300);
-
-            circleObserver.unobserve(card);
-        }
+        circle.style.strokeDashoffset = circumference;
+        setTimeout(() => {
+            circle.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.2, 0.9, 0.3, 1)';
+            const offset = circumference - (percent * circumference);
+            circle.style.strokeDashoffset = offset;
+        }, 300);
+        circleObserver.unobserve(card);
     });
 }, { threshold: 0.3 });
-
-document.querySelectorAll('.stat-card').forEach(card => {
-    circleObserver.observe(card);
-});
+document.querySelectorAll('.stat-card').forEach(card => circleObserver.observe(card));
 
 // ================================================================
 // 12. CONTACT FORM
 // ================================================================
 const form = document.getElementById('contactForm');
 const toast = document.getElementById('toast');
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
-
     if (!name || !email || !message) {
         showToast('⚠️ ' + (currentLang === 'ar' ? 'الرجاء ملء جميع الحقول المطلوبة.' :
             'Please fill in all required fields.'), 'error');
         return;
     }
-
-    console.log('📨 إرسال بيانات الحجز:', { name, email, phone: document.getElementById('phone').value.trim(),
+    console.log('📨 إرسال البيانات:', { name, email, phone: document.getElementById('phone').value.trim(),
         message });
     showToast('✅ ' + (currentLang === 'ar' ? 'تم استلام طلبك! سأتواصل معك خلال 24 ساعة.' :
         'Your request has been received! I will contact you within 24 hours.'), 'success');
@@ -529,31 +495,19 @@ const modalSubtitle = document.getElementById('modalSubtitle');
 const modalGallery = document.getElementById('modalGallery');
 const modalClose = document.getElementById('modalClose');
 
-console.log('✅ Modal elements found:', { modalOverlay, modalTitle, modalSubtitle, modalGallery, modalClose });
-
 const portfolioItems = document.querySelectorAll('.portfolio-item');
-console.log('📊 عدد بطاقات الأعمال:', portfolioItems.length);
 
 portfolioItems.forEach((item, index) => {
     item.addEventListener('click', function(e) {
         const data = casesData[index];
-        if (!data) {
-            console.error('❌ لا توجد بيانات للمؤشر:', index);
-            return;
-        }
-
-        console.log('🖱️ فتح المودال:', data.title);
-
+        if (!data) return;
         const titleKey = `portfolio_title${index+1}`;
         const titleText = translations[currentLang][titleKey] || data.title;
         modalTitle.innerHTML = `<i class="fas fa-tooth"></i> <span class="highlight">${titleText}</span>`;
-
-        const subtitleText = data.subtitle + ` (${data.images.length} صورة)`;
         modalSubtitle.innerHTML = `
-                    ${subtitleText}
+                    ${data.subtitle} (${data.images.length} صورة)
                     <span class="image-counter"><i class="fas fa-images"></i> ${data.images.length} صورة</span>
                 `;
-
         modalGallery.innerHTML = '';
         data.images.forEach((imgSrc, imgIndex) => {
             const div = document.createElement('div');
@@ -569,7 +523,6 @@ portfolioItems.forEach((item, index) => {
             });
             modalGallery.appendChild(div);
         });
-
         modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
@@ -579,17 +532,10 @@ function closeModal() {
     modalOverlay.classList.remove('active');
     document.body.style.overflow = '';
 }
-
 modalClose.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
-});
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeModal();
-        closeLightbox();
-    }
-});
+modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal();
+        closeLightbox(); } });
 
 // ================================================================
 // 15. LIGHTBOX
@@ -600,9 +546,8 @@ const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
 const lightboxCounterText = document.getElementById('lightboxCounterText');
-
-let currentImages = [];
-let currentImageIndex = 0;
+let currentImages = [],
+    currentImageIndex = 0;
 
 function openLightbox(images, index) {
     currentImages = images;
@@ -630,22 +575,12 @@ function closeLightbox() {
     currentImages = [];
     currentImageIndex = 0;
 }
-
 lightboxClose.addEventListener('click', closeLightbox);
-lightboxOverlay.addEventListener('click', (e) => {
-    if (e.target === lightboxOverlay) closeLightbox();
-});
-
-lightboxPrev.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navigateLightbox(-1);
-});
-
-lightboxNext.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navigateLightbox(1);
-});
-
+lightboxOverlay.addEventListener('click', (e) => { if (e.target === lightboxOverlay) closeLightbox(); });
+lightboxPrev.addEventListener('click', (e) => { e.stopPropagation();
+    navigateLightbox(-1); });
+lightboxNext.addEventListener('click', (e) => { e.stopPropagation();
+    navigateLightbox(1); });
 document.addEventListener('keydown', (e) => {
     if (!lightboxOverlay.classList.contains('active')) return;
     if (e.key === 'ArrowRight') navigateLightbox(-1);
@@ -656,5 +591,4 @@ document.addEventListener('keydown', (e) => {
 // 16. BOOTSTRAP
 // ================================================================
 applyLanguage(currentLang);
-console.log('✅ تم تحميل البورتفوليو مع نظام الترجمة (عربي / إنجليزي) والمودال المُصلح!');
-console.log('🦷 اللغة الأساسية: العربية');
+console.log('✅ تم تحميل البورتفوليو بنجاح!');
