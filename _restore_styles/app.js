@@ -357,68 +357,25 @@ window.addEventListener('scroll', () => {
 });
 
 // ================================================================
-// 8. THEME TOGGLE + THEME MENU PRESETS
+// 8. THEME TOGGLE
 // ================================================================
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
-
-const themeMenuButton = document.getElementById('themeMenuButton');
-const themeMenu = document.getElementById('themeMenu');
-
-// الثيمات الافتراضية بتاعة الألوان مش لازم تعتمد على `dark/light` بالاسم
-// هنا نعتبر `dark` هو القيمة الافتراضية لو المستخدم ما اختارش حاجة
 const currentTheme = localStorage.getItem('theme') || 'dark';
 document.documentElement.setAttribute('data-theme', currentTheme);
 updateIcon(currentTheme);
 
+themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    updateIcon(next);
+});
+
 function updateIcon(theme) {
-    // أيقونة زر القمر/الشمس (تطابق مع الثيم light/dark)
-    if (!themeIcon) return;
     themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
-
-function applyTheme(preset) {
-    document.documentElement.setAttribute('data-theme', preset);
-    localStorage.setItem('theme', preset);
-    updateIcon(preset);
-}
-
-// زر القمر/الشمس الحالي (dark <-> light)
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-    });
-}
-
-// زر قائمة الألوان
-if (themeMenuButton && themeMenu) {
-    // default hidden in HTML by `hidden`
-    themeMenuButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isHidden = themeMenu.hasAttribute('hidden');
-        if (isHidden) themeMenu.removeAttribute('hidden');
-        else themeMenu.setAttribute('hidden', '');
-    });
-
-    // اختيار presets
-    themeMenu.querySelectorAll('[data-theme-preset]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const preset = btn.getAttribute('data-theme-preset');
-            if (!preset) return;
-            applyTheme(preset);
-            themeMenu.setAttribute('hidden', '');
-        });
-    });
-
-    // إغلاق عند الضغط خارج القائمة
-    document.addEventListener('click', () => {
-        if (!themeMenu.hasAttribute('hidden')) themeMenu.setAttribute('hidden', '');
-    });
-}
-
 
 // ================================================================
 // 9. MOBILE MENU

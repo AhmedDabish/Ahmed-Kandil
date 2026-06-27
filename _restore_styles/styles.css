@@ -81,63 +81,6 @@ body {
 }
 
 /* ================================================================
-   THEME PRESETS (Color choices) - used by the UI buttons
-   ================================================================ */
-
-/* Blue */
-[data-theme="blue"] {
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-glow: rgba(59, 130, 246, 0.25);
-    --secondary: #8b5cf6;
-    --secondary-glow: rgba(139, 92, 246, 0.25);
-    --gradient-main: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    --divider-color: rgba(59, 130, 246, 0.25);
-    --hero-bg: radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.10) 0%, transparent 60%);
-    --tooth-opacity: 0.07;
-}
-
-/* Royal */
-[data-theme="royal"] {
-    --accent: #a855f7;
-    --accent-hover: #9333ea;
-    --accent-glow: rgba(168, 85, 247, 0.25);
-    --secondary: #ec4899;
-    --secondary-glow: rgba(236, 72, 153, 0.22);
-    --gradient-main: linear-gradient(135deg, #a855f7, #ec4899);
-    --divider-color: rgba(168, 85, 247, 0.25);
-    --hero-bg: radial-gradient(ellipse at 30% 50%, rgba(168, 85, 247, 0.10) 0%, transparent 60%);
-    --tooth-opacity: 0.07;
-}
-
-/* Midnight */
-[data-theme="midnight"] {
-    --accent: #6366f1;
-    --accent-hover: #4f46e5;
-    --accent-glow: rgba(99, 102, 241, 0.24);
-    --secondary: #06b6d4;
-    --secondary-glow: rgba(6, 182, 212, 0.22);
-    --gradient-main: linear-gradient(135deg, #6366f1, #06b6d4);
-    --divider-color: rgba(99, 102, 241, 0.25);
-    --hero-bg: radial-gradient(ellipse at 30% 50%, rgba(99, 102, 241, 0.10) 0%, transparent 60%);
-    --tooth-opacity: 0.07;
-}
-
-/* Emerald */
-[data-theme="emerald"] {
-    --accent: #10b981;
-    --accent-hover: #059669;
-    --accent-glow: rgba(16, 185, 129, 0.22);
-    --secondary: #14b8a6;
-    --secondary-glow: rgba(20, 184, 166, 0.22);
-    --gradient-main: linear-gradient(135deg, #10b981, #14b8a6);
-    --divider-color: rgba(16, 185, 129, 0.25);
-    --hero-bg: radial-gradient(ellipse at 30% 50%, rgba(16, 185, 129, 0.10) 0%, transparent 60%);
-    --tooth-opacity: 0.07;
-}
-
-
-/* ================================================================
    CUSTOM CURSOR
    ================================================================ */
 @media (min-width: 769px) {
@@ -419,24 +362,23 @@ body {
 }
 .nav-links a:hover::after { width: 100%; }
 .theme-toggle, .lang-toggle {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 9999px;
-    width: 48px;
-    height: 48px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: var(--accent);
+    color: var(--text);
     font-size: 1rem;
-    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s ease;
-    backdrop-filter: blur(24px);
-    box-shadow: var(--shadow);
+    transition: all var(--transition);
+    backdrop-filter: blur(8px);
 }
 .theme-toggle:hover, .lang-toggle:hover {
-    border-color: rgba(56, 189, 248, 0.4);
-    transform: none;
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--accent);
 }
 .lang-toggle span { font-size: 0.6rem; font-weight: 700; margin-right: 0.2rem; }
 .hamburger {
@@ -454,106 +396,6 @@ body {
     background: var(--text);
     border-radius: 4px;
     transition: all var(--transition);
-}
-
-/* ================================================================
-   THEME BUTTONS (UI)
-   ================================================================ */
-.theme-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    position: fixed;
-    left: 1rem;
-    bottom: 1rem;
-    z-index: 3000;
-    align-items: flex-start;
-}
-
-.theme-main {
-    border: 1px solid rgba(255, 255, 255, 0.10) !important;
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-radius: 9999px !important;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--accent);
-    backdrop-filter: blur(24px);
-    box-shadow: var(--shadow);
-    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s ease, background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.theme-main:hover {
-    border-color: rgba(56, 189, 248, 0.4) !important;
-    transform: none;
-    background: rgba(255, 255, 255, 0.06) !important;
-}
-.theme-main-svg {
-    width: 24px;
-    height: 24px;
-    display: block;
-    color: var(--accent);
-}
-
-.theme-main svg,
-.theme-main svg * {
-    fill: currentColor;
-    stroke: currentColor;
-}
-
-/* ensure all inline SVG inside theme button uses the right color */
-.theme-main-icon svg {
-    color: var(--accent);
-}
-
-/* avoid weird inheritance on the button icon */
-.theme-main svg path,
-.theme-main svg circle {
-    vector-effect: non-scaling-stroke;
-}
-
-.theme-main-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateZ(0);
-}
-
-#themeMenuButton:focus,
-#themeMenuButton:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
-}
-
-.theme-colors {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.35rem;
-    border-radius: 20px;
-    background: rgba(10, 15, 30, 0.55);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(16px);
-}
-
-.theme-color {
-    width: 40px;
-    height: 40px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    cursor: pointer;
-    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.4);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-}
-.theme-color:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.08), 0 18px 45px -18px rgba(0,0,0,0.6);
 }
 
 /* ================================================================
@@ -781,7 +623,6 @@ section {
     position: absolute;
     bottom: 5px;
     right: -10px;
-    /* default (used before orbit mode) */
     background: var(--bg-card);
     backdrop-filter: blur(16px);
     border: 1px solid var(--accent);
@@ -797,75 +638,6 @@ section {
     gap: 0.4rem;
 }
 .hero-badge-float i { color: #22c55e; }
-
-/* Put badge on the orbit around the avatar (bottom-left) */
-.hero-badge-float-orbit {
-    top: auto;
-    left: 0;
-    right: auto;
-    bottom: 0;
-    transform: translate(-12%, 12%);
-    z-index: 6;
-}
-
-
-.hero-badge-float-orbit::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border-radius: 9999px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
-    opacity: 0.9;
-    z-index: -1;
-}
-
-@media (max-width: 992px) {
-    .hero-badge-float-orbit {
-        transform: translate(-18%, 18%);
-    }
-}
-
-@media (max-width: 768px) {
-    /* .hero-badge-float-orbit {
-        transform: translate(-10%, 10%);
-        font-size: 0.65rem;
-        padding: 0.2rem 0.7rem;
-    }*/
-        .hero-badge-float-orbit i { 
-        font-size: 0.65rem;
-    }
-}
-
-
-/* Center badge at bottom-middle of avatar */
-.hero-badge-float-center {
-    left: 50%;
-    right: auto;
-    bottom: 22px;
-    transform: translateX(-50%);
-    z-index: 6;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 1rem;
-}
-.hero-badge-float-center-icon {
-    font-size: 1rem;
-    filter: drop-shadow(0 0 10px var(--accent-glow));
-}
-.hero-badge-float-center-text {
-    font-weight: 900;
-    font-size: 0.75rem;
-}
-
-@media (max-width: 992px) {
-    .hero-badge-float-center { bottom: 18px; }
-}
-
-@media (max-width: 768px) {
-    .hero-badge-float-center { bottom: 14px; }
-}
-
 .medical-tips {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1676,24 +1448,6 @@ footer .footer-tooth { font-size: 1.2rem; display: inline-block; margin: 0 0.3re
 
 @media (max-width: 768px) {
     .hamburger { display: flex; }
-    .theme-buttons {
-        display: flex;
-        position: fixed;
-        left: 1rem;
-        bottom: 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-        z-index: 3000;
-        padding: 0.35rem;
-        border-radius: 20px;
-        background: rgba(10, 15, 30, 0.55);
-        border: 1px solid var(--border);
-        backdrop-filter: blur(16px);
-    }
-
-
-
-
     .nav-links {
         display: none;
         flex-direction: column;
@@ -1737,9 +1491,8 @@ footer .footer-tooth { font-size: 1.2rem; display: inline-block; margin: 0 0.3re
     .modal-gallery { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.7rem; }
     .modal-close { width: 38px; height: 38px; font-size: 1rem; }
     .lightbox-close { top: 1rem; right: 1rem; width: 40px; height: 40px; font-size: 1.3rem; }
-    .floating-tooth-wrapper { display: block; }
-    .floating-tooth-wrapper-left { display: block; }
-
+    .floating-tooth-wrapper { display: none; }
+    .floating-tooth-wrapper-left { display: none; }
     .timeline::before { display: none; }
     .timeline-item::before { display: none; }
     .medical-tips { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -1749,19 +1502,6 @@ footer .footer-tooth { font-size: 1.2rem; display: inline-block; margin: 0 0.3re
     .lightbox-nav { width: 36px; height: 36px; font-size: 1rem; }
     .lightbox-nav.prev { right: 0.2rem; }
     .lightbox-nav.next { left: 0.2rem; }
-    /* fix theme buttons layout on mobile */
-    .theme-buttons {
-        left: 1rem;
-        bottom: 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-        position: fixed;
-        display: flex;
-        align-items: flex-start;
-        transform: none;
-    }
-
-
     .spinning-tooth-left { display: none; }
     .lang-toggle span { display: none; }
 }
@@ -1781,97 +1521,4 @@ footer .footer-tooth { font-size: 1.2rem; display: inline-block; margin: 0 0.3re
     .spinning-tooth-left { display: none; }
     .lang-toggle span { display: none; }
     .hero-grid .hero-image { order: -1; }
-     .hero-badge-float-orbit {
-        font-size: 0.45rem;
-        padding: 0.1rem 0.4rem;
-    }
-}
-.theme-colors[hidden] {
-    display: none !important;
-}
-
-.theme-colors:not([hidden]) {
-    display: flex;
-}.orbit-tooth {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    animation: orbitRotate 15s linear infinite;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.orbit-tooth i {
-    position: absolute;
-    top: -24px;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    border: 2px solid var(--accent);
-    box-shadow: 0 0 30px var(--accent-glow), inset 0 0 30px var(--accent-glow);
-    backdrop-filter: blur(4px);
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    
-    /* ✅ الضرس بس دهب */
-    /* color: #ffb434;
-    filter: drop-shadow(0 0 8px #ffb434); */
-    color: #ffffff;
-filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-    animation: counterRotate 15s linear infinite, cursorPulse 1.8s ease-in-out infinite;
-}
-
-@keyframes orbitRotate {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-
-@keyframes counterRotate {
-    from { transform: translateX(-50%) rotate(0deg); }
-    to   { transform: translateX(-50%) rotate(-360deg); }
-}
-/* إخفاء الـ orbit badge على موبايل */
-@media (max-width: 768px) {
-    .hero-badge-float-orbit {
-        display: none !important;
-    }
-}
-@media (max-width: 768px) {
-    .hero-image {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-/* badge موبايل تحت الصورة */
-.hero-badge-mobile {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .hero-badge-mobile {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background: var(--bg-card);
-        backdrop-filter: blur(16px);
-        border: 1px solid var(--accent);
-        padding: 0.3rem 1rem;
-        border-radius: 60px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: var(--text);
-        box-shadow: var(--shadow);
-        margin-top: 1rem;
-    }
-    .hero-badge-mobile i { color: #22c55e; }
 }
